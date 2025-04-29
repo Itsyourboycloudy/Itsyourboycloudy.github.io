@@ -1,5 +1,5 @@
 body {
-font-family: monospace;
+    font-family: monospace;
     margin: 0;
     padding: 0;
     background: linear-gradient(to right, #0b40a4, #5badf0);
@@ -9,8 +9,10 @@ font-family: monospace;
     padding: 20px;
 }
 
-.profile-box {
-    background-color: 	#9f9f9f;
+.profile-box,
+.description-box,
+.icon-box {
+    background-color: #9f9f9f;
     border-right: 3px solid;
     border-bottom: 3px solid;
     border-top: 5px solid #dfdfdf48;
@@ -21,7 +23,7 @@ font-family: monospace;
     position: relative;
 }
 
-.profile-header, .description-header {
+.header {
     background: linear-gradient(to right, #447de5, #077ddd);
     color: white;
     padding: 20px;
@@ -32,9 +34,10 @@ font-family: monospace;
     top: 0;
     left: 0;
     right: 0;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
 }
+
 .close-button {
     position: absolute;
     top: 50%;
@@ -56,19 +59,22 @@ font-family: monospace;
     background-color: #666;
     color: #ffffff;
 }
+
 #profilePic {
-    width: 70%;
+    max-width: 70%;
+    height: auto;
     border-right: 5px solid #dfdfdf48;
     border-bottom: 5px solid #dfdfdf48;
     border-top: 3px solid;
     border-left: 3px solid;
-    margin-top: 50px; /* Adjust to create space for the header */
+    margin-top: 50px;
+    /* Adjust to create space for the header */
     margin-bottom: 20px;
 }
 
 .media-player {
     margin-top: 40px;
-    
+
 }
 
 .controls {
@@ -100,28 +106,21 @@ font-family: monospace;
 .controls button:hover {
     background-color: #444;
 }
-.description-box {
-    background-color: #9f9f9f;
-    border-right: 3px solid;
-    border-bottom: 3px solid;
-    border-top: 5px solid #dfdfdf48;
-    border-left: 5px solid #dfdfdf48;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
-    margin-top: 20px;
-}
-.description-text {
+
+
+.description-text,
+.icon-text {
     background-color: #ededed;
     border-right: 5px solid #c2c2c25a;
     border-bottom: 5px solid #c2c2c25a;
     border-top: 3px solid;
     border-left: 3px solid;
-    margin: 50px 0 0 0; /* Adjust margin to create space below the header */
+    margin: 50px 0 0 0;
+    /* Adjust margin to create space below the header */
     padding: 20px;
     text-align: left;
 }
+
 #nowPlaying {
     margin-top: 10px;
     font-size: 16px;
@@ -129,6 +128,7 @@ font-family: monospace;
     text-align: center;
     font-weight: bold;
 }
+
 .sections {
     display: flex;
     justify-content: space-around;
@@ -141,21 +141,20 @@ font-family: monospace;
     padding: 10px;
 }
 
-h1, h2 {
+h1,
+h2 {
     margin: 10px 0;
 }
 
 hr {
     margin: 20px 0;
 }
+
 .desktop-icons {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Responsive grid */
-    gap: 20px; /* Space between icons */
-    justify-content: center; /* Center icons horizontally */
-    align-items: center; /* Center icons vertically */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    /* Responsive grid */
     padding: 20px;
-    width: 100%;
 }
 
 .icon {
@@ -170,6 +169,6 @@ hr {
 
 .icon p {
     color: white;
-    margin: 10px 0 0;
+    margin: 10px;
     font-size: 18px;
 }

@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html>
 
 <head>
@@ -18,7 +17,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="profile-box">
-                    <div class="profile-header">
+                    <div class="header">
                         <span class="close-button">X</span>
                     </div>
                     <img src="Me.JPG" alt="Your Photo" class="img-fluid" id="profilePic">
@@ -37,7 +36,7 @@
             <!-- Right side: Description -->
             <div class="col-md-6">
                 <div class="description-box">
-                    <div class="description-header">
+                    <div class="header">
                         <span class="close-button">X</span>
                     </div>
                     <div class="description-text">
@@ -52,86 +51,122 @@
             </div>
         </div>
     </div>
-    <!-- Sections for Projects, Contact, and Resume -->
+
+    <!-- Desktop Icons -->
     <div class="desktop-icons">
-        <div class="icon" style="top: 200px; left: 100px;">
-            <a href="#projects">
-                <img src="Icons/folder.png" alt="Projects Icon">
-                <p>Projects</p>
-            </a>
+        <div class="icon" onclick="openSection('projectsBox')">
+            <img src="Icons/folder.png" alt="Projects Icon">
+            <p>Projects</p>
         </div>
-        <div class="icon" style="top: 270px; left: 420px;">
-            <a href="mailto:jessejtorres1987@gmail.com">
-                <img src="Icons/email.png" alt="Contact Icon">
-                <p>Contact</p>
-            </a>
+        <div class="icon" onclick="openSection('contactBox')">
+            <img src="Icons/email.png" alt="Contact Icon">
+            <p>Contact</p>
         </div>
-        <div class="icon" style="top: 100px; left: 300px;">
-            <a href="Jesse_Torres_Resume.pdf" target="_blank">
-                <img src="Icons/resume.png" alt="Resume Icon">
-                <p>Resume</p>
-            </a>
+        <div class="icon" onclick="openSection('resumeBox')">
+            <img src="Icons/resume.png" alt="Resume Icon">
+            <p>Resume</p>
         </div>
     </div>
 
+    <!-- Pop-up Sections -->
+    <div id="projectsBox" class="icon-box" style="display: none;">
+        <div class="header">
+            Projects
+            <span class="close-button" onclick="closeSection('projectsBox')">X</span>
+        </div>
+        <div class="icon-text">
+            <p>Here are some of my recent projects:</p>
+            <img src="project-sample.jpg" class="img-fluid mb-2" alt="Project Sample">
+            <p><strong>Game Title:</strong> Space Invaders Clone (Unity/C#)</p>
+        </div>
+    </div>
+
+    <div id="contactBox" class="icon-box" style="display: none;">
+        <div class="header">
+            Contact
+            <span class="close-button" onclick="closeSection('contactBox')">X</span>
+        </div>
+        <div class="icon-text">
+            <p>Email: <a href="mailto:jessejtorres1987@gmail.com">jessejtorres1987@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a>
+            </p>
+        </div>
+    </div>
+
+    <div id="resumeBox" class="icon-box" style="display: none;">
+        <div class="header">
+            Resume
+            <span class="close-button" onclick="closeSection('resumeBox')">X</span>
+        </div>
+        <div class="icon-text">
+            <p><a href="Jesse_Torres_Resume.pdf" target="_blank">Download my resume here</a></p>
+            <img src="resume-preview.jpg" class="img-fluid" alt="Resume Preview">
+        </div>
+    </div>
+
+    <!-- JavaScript -->
     <script>
-        // Array of songs
+        // Section pop-ups
+        function openSection(id) {
+            document.querySelectorAll('.icon-box').forEach(box => {
+                box.style.display = 'none';
+            });
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function closeSection(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        // Audio Player
         const songs = [
-            //Put Songs from songs folder here
             "Kendrick Lamar - Rich Spirit.mp3",
             "Frank Ocean - Nights.mp3",
             "Baby Keem - 16.mp3",
         ];
 
-        let currentSongIndex = 0; // Track the current song
+        let currentSongIndex = 0;
         const audioPlayer = document.getElementById("audioPlayer");
         const playPauseButton = document.getElementById("playPauseButton");
         const backButton = document.getElementById("backButton");
         const skipButton = document.getElementById("skipButton");
         const nowPlaying = document.getElementById("nowPlaying");
 
-        // Load the first song
         function loadSong(index) {
             audioPlayer.src = "songs/" + songs[index];
             nowPlaying.textContent = `Now Playing: ${songs[index].split('/').pop()}`;
         }
 
-        // Play or pause the current song
         playPauseButton.addEventListener("click", () => {
             if (audioPlayer.paused) {
                 audioPlayer.play();
-                playPauseButton.textContent = "⏸"; // Change to pause icon
+                playPauseButton.textContent = "⏸";
             } else {
                 audioPlayer.pause();
-                playPauseButton.textContent = "▶"; // Change to play icon
+                playPauseButton.textContent = "▶";
             }
         });
 
-        // Skip to the next song
         skipButton.addEventListener("click", () => {
-            currentSongIndex = (currentSongIndex + 1) % songs.length; // Loop back to the first song
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
             loadSong(currentSongIndex);
             audioPlayer.play();
             playPauseButton.textContent = "⏸";
         });
 
-        // Go back to the previous song
         backButton.addEventListener("click", () => {
-            currentSongIndex =
-                (currentSongIndex - 1 + songs.length) % songs.length; // Loop back to the last song
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
             loadSong(currentSongIndex);
             audioPlayer.play();
             playPauseButton.textContent = "⏸";
         });
 
-        // Automatically play the next song when the current one ends
         audioPlayer.addEventListener("ended", () => {
             currentSongIndex = (currentSongIndex + 1) % songs.length;
             loadSong(currentSongIndex);
             audioPlayer.play();
         });
 
-        // Initialize the player with the first song
         loadSong(currentSongIndex);
     </script>
 </body>
