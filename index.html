@@ -16,13 +16,13 @@
         <!-- Left side: Picture and Media Player -->
         <div class="row">
             <div class="col-md-6">
-                <div class="profile-box">
+                <div id="profileBox" class="icon-box" style="display: none;">
                     <div class="header">
-                        <span class="close-button">X</span>
+                        Picture & Music
+                        <span class="close-button" onclick="closeSection('profileBox')">X</span>
                     </div>
                     <img src="Me.JPG" alt="Your Photo" class="img-fluid" id="profilePic">
-                    <!-- Media Player -->
-                    <div class="media-player">
+                    <div class="media-player mt-3">
                         <audio id="audioPlayer"></audio>
                         <div class="controls">
                             <button id="backButton">⏮</button>
@@ -32,12 +32,14 @@
                         <p id="nowPlaying">Now Playing: ...</p>
                     </div>
                 </div>
+
             </div>
             <!-- Right side: Description -->
             <div class="col-md-6">
-                <div class="description-box">
+                <div id="descriptionBox" class="icon-box" style="display: none;">
                     <div class="header">
-                        <span class="close-button">X</span>
+                        About Me
+                        <span class="close-button" onclick="closeSection('descriptionBox')">X</span>
                     </div>
                     <div class="description-text">
                         <h1>Hello! My name is <strong>Jesse Torres</strong></h1>
@@ -53,6 +55,15 @@
     </div>
 
     <!-- Desktop Icons -->
+    <div class="icon" onclick="openSection('profileBox')">
+        <img src="Icons/mediaPlayer.png" alt="Media Icon">
+        <p>Me</p>
+    </div>
+    <div class="icon" onclick="openSection('descriptionBox')">
+        <img src="Icons/description.png" alt="Description Icon">
+        <p>About Me</p>
+    </div>
+
     <div class="desktop-icons">
         <div class="icon" onclick="openSection('projectsBox')">
             <img src="Icons/folder.png" alt="Projects Icon">
@@ -88,7 +99,8 @@
         </div>
         <div class="icon-text">
             <p>Email: <a href="mailto:jessejtorres1987@gmail.com">jessejtorres1987@gmail.com</a></p>
-            <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/jessejamestorres"
+                    target="_blank">linkedin.com/in/jessejamestorres</a>
             </p>
         </div>
     </div>
@@ -99,8 +111,8 @@
             <span class="close-button" onclick="closeSection('resumeBox')">X</span>
         </div>
         <div class="icon-text">
-            <p><a href="Jesse_Torres_Resume.pdf" target="_blank">Download my resume here</a></p>
-            <img src="resume-preview.jpg" class="img-fluid" alt="Resume Preview">
+            <p><a href="Jesse_Torres_Resume.pdf" target="_blank">Resume PDF</a></p>
+            <img src="My Resume.jpg" class="img-fluid" alt="Resume Preview">
         </div>
     </div>
 
@@ -108,12 +120,8 @@
     <script>
         // Section pop-ups
         function openSection(id) {
-            document.querySelectorAll('.icon-box').forEach(box => {
-                box.style.display = 'none';
-            });
             document.getElementById(id).style.display = 'block';
         }
-
         function closeSection(id) {
             document.getElementById(id).style.display = 'none';
         }
