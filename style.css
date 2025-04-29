@@ -1,5 +1,5 @@
 body {
-    font-family: OCRB;
+font-family: monospace;
     margin: 0;
     padding: 0;
     background: linear-gradient(to right, #0b40a4, #5badf0);
@@ -11,7 +11,10 @@ body {
 
 .profile-box {
     background-color: 	#9f9f9f;
-    border: 2px solid #000000;
+    border-right: 3px solid;
+    border-bottom: 3px solid;
+    border-top: 5px solid #dfdfdf48;
+    border-left: 5px solid #dfdfdf48;
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -51,7 +54,7 @@ body {
 }
 
 .controls button {
-    background-color: #000;
+    background-color: #929292;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -69,7 +72,10 @@ body {
 }
 .description-box {
     background-color: #9f9f9f;
-    border: 2px solid #000000;
+    border-right: 3px solid;
+    border-bottom: 3px solid;
+    border-top: 5px solid #dfdfdf48;
+    border-left: 5px solid #dfdfdf48;
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
