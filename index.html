@@ -1,40 +1,130 @@
 <!doctype html>
+
 <html>
 
 <head>
-    <title>
-        Portfolio
-    </title>
+    <title>Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <p>
-        <h1>
-            Portfolio of <strong>Jesse Torres</strong>
-        </h1>
-        <hr>
-        I am a software developer with a passion for creating
-        innovative solutions. This is my portfolio showcasing my work and projects.
-        </hr>
-    </p>
-    <p>
-        <hr>
-    <h2>Projects</h2>
-    <img src="Letterboxd 6.png" alt="Project 1" width="300" height="600">
-    </p>
-    <p>
-        <hr>
-    <h2>Contact</h2>
+    <div class="container">
+        <!-- Left side: Picture and Media Player -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="profile-box">
+                    <div class="profile-header">
+                    </div>
+                    <img src="Me.JPG" alt="Your Photo" class="img-fluid" id="profilePic">
+                    <!-- Media Player -->
+                    <div class="media-player">
+                        <audio id="audioPlayer"></audio>
+                        <div class="controls">
+                            <button id="backButton">⏮</button>
+                            <button id="playPauseButton">▶</button>
+                            <button id="skipButton">⏭</button>
+                        </div>
+                        <p id="nowPlaying">Now Playing: ...</p>
+                    </div>
+                </div>
 
-    <p> <a href="https://www.linkedin.com/in/jessejamestorres">My linkedin Profile</a>
-    <p> <a href="mailto:jessejtorres1987@gmail.com">My Email</a> </p>
-    </p>
+        </div>
+        <div class="col-md-6">
+            <div class="description-box">
+                <div class="description-header">
+                </div>
+                <div class="description-text">
+                    <h1>Hello! My name is <strong>Jesse Torres</strong></h1>
+                    <p>
+                        I am a GIMM student at Boise State University, passionate about game development, interactive media, and coding. This website serves as a showcase of my projects, skills, and experience.
+                    </p>
+                </div>
+            </div>
+        </div>
+    <hr>
 
-    <p>
-        <hr>
-    <h3>Portfolio artifacts</h3>
-    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
+    <!-- Sections for Projects, Contact, and Resume -->
+    <div class="sections">
+        <div class="section">
+            <h2>Projects</h2>
+            <img src="Letterboxd 6.png" alt="Project 1" width="300" height="600">
+        </div>
+
+        <div class="section">
+            <h2>Contact</h2>
+            <p><a href="https://www.linkedin.com/in/jessejamestorres">My LinkedIn Profile</a></p>
+            <p><a href="mailto:jessejtorres1987@gmail.com">My Email</a></p>
+        </div>
+
+        <div class="section">
+            <h2>Resume</h2>
+            <p><a href="resume.pdf" target="_blank">My Resume</a></p>
+        </div>
+    </div>
+    <script>
+        // Array of songs
+        const songs = [
+            "Kendrick Lamar - Rich Spirit.mp3", // Replace with your actual file paths
+            "Frank Ocean - Nights.mp3",
+            "Baby Keem - 16.mp3",
+        ];
+    
+        let currentSongIndex = 0; // Track the current song
+        const audioPlayer = document.getElementById("audioPlayer");
+        const playPauseButton = document.getElementById("playPauseButton");
+        const backButton = document.getElementById("backButton");
+        const skipButton = document.getElementById("skipButton");
+        const nowPlaying = document.getElementById("nowPlaying");
+    
+        // Load the first song
+        function loadSong(index) {
+            audioPlayer.src = "songs/" +songs[index];
+            nowPlaying.textContent = `Now Playing: ${songs[index].split('/').pop()}`;
+        }
+    
+        // Play or pause the current song
+        playPauseButton.addEventListener("click", () => {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playPauseButton.textContent = "⏸"; // Change to pause icon
+            } else {
+                audioPlayer.pause();
+                playPauseButton.textContent = "▶"; // Change to play icon
+            }
+        });
+    
+        // Skip to the next song
+        skipButton.addEventListener("click", () => {
+            currentSongIndex = (currentSongIndex + 1) % songs.length; // Loop back to the first song
+            loadSong(currentSongIndex);
+            audioPlayer.play();
+            playPauseButton.textContent = "⏸";
+        });
+    
+        // Go back to the previous song
+        backButton.addEventListener("click", () => {
+            currentSongIndex =
+                (currentSongIndex - 1 + songs.length) % songs.length; // Loop back to the last song
+            loadSong(currentSongIndex);
+            audioPlayer.play();
+            playPauseButton.textContent = "⏸";
+        });
+    
+        // Automatically play the next song when the current one ends
+        audioPlayer.addEventListener("ended", () => {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            loadSong(currentSongIndex);
+            audioPlayer.play();
+        });
+    
+        // Initialize the player with the first song
+        loadSong(currentSongIndex);
+    </script>
 </body>
 
 </html>
