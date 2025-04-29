@@ -19,6 +19,7 @@
             <div class="col-md-6">
                 <div class="profile-box">
                     <div class="profile-header">
+                        <span class="close-button">X</span>
                     </div>
                     <img src="Me.JPG" alt="Your Photo" class="img-fluid" id="profilePic">
                     <!-- Media Player -->
@@ -32,22 +33,25 @@
                         <p id="nowPlaying">Now Playing: ...</p>
                     </div>
                 </div>
-
-        </div>
-        <div class="col-md-6">
-            <div class="description-box">
-                <div class="description-header">
-                </div>
-                <div class="description-text">
-                    <h1>Hello! My name is <strong>Jesse Torres</strong></h1>
-                    <p>
-                        I am a GIMM student at Boise State University, passionate about game development, interactive media, and coding. This website serves as a showcase of my projects, skills, and experience.
-                    </p>
+            </div>
+            <!-- Right side: Description -->
+            <div class="col-md-6">
+                <div class="description-box">
+                    <div class="description-header">
+                        <span class="close-button">X</span>
+                    </div>
+                    <div class="description-text">
+                        <h1>Hello! My name is <strong>Jesse Torres</strong></h1>
+                        <p>
+                            I am a GIMM student at Boise State University, passionate about game development,
+                            interactive media, and coding. This website serves as a showcase of my projects, skills, and
+                            experience.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    <hr>
-
+    </div>
     <!-- Sections for Projects, Contact, and Resume -->
     <div class="sections">
         <div class="section">
@@ -73,20 +77,20 @@
             "Frank Ocean - Nights.mp3",
             "Baby Keem - 16.mp3",
         ];
-    
+
         let currentSongIndex = 0; // Track the current song
         const audioPlayer = document.getElementById("audioPlayer");
         const playPauseButton = document.getElementById("playPauseButton");
         const backButton = document.getElementById("backButton");
         const skipButton = document.getElementById("skipButton");
         const nowPlaying = document.getElementById("nowPlaying");
-    
+
         // Load the first song
         function loadSong(index) {
-            audioPlayer.src = "songs/" +songs[index];
+            audioPlayer.src = "songs/" + songs[index];
             nowPlaying.textContent = `Now Playing: ${songs[index].split('/').pop()}`;
         }
-    
+
         // Play or pause the current song
         playPauseButton.addEventListener("click", () => {
             if (audioPlayer.paused) {
@@ -97,7 +101,7 @@
                 playPauseButton.textContent = "▶"; // Change to play icon
             }
         });
-    
+
         // Skip to the next song
         skipButton.addEventListener("click", () => {
             currentSongIndex = (currentSongIndex + 1) % songs.length; // Loop back to the first song
@@ -105,7 +109,7 @@
             audioPlayer.play();
             playPauseButton.textContent = "⏸";
         });
-    
+
         // Go back to the previous song
         backButton.addEventListener("click", () => {
             currentSongIndex =
@@ -114,14 +118,14 @@
             audioPlayer.play();
             playPauseButton.textContent = "⏸";
         });
-    
+
         // Automatically play the next song when the current one ends
         audioPlayer.addEventListener("ended", () => {
             currentSongIndex = (currentSongIndex + 1) % songs.length;
             loadSong(currentSongIndex);
             audioPlayer.play();
         });
-    
+
         // Initialize the player with the first song
         loadSong(currentSongIndex);
     </script>

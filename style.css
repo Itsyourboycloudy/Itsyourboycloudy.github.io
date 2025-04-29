@@ -21,7 +21,7 @@ font-family: monospace;
     position: relative;
 }
 
-.profile-header {
+.profile-header, .description-header {
     background: linear-gradient(to right, #447de5, #077ddd);
     color: white;
     padding: 20px;
@@ -32,8 +32,30 @@ font-family: monospace;
     top: 0;
     left: 0;
     right: 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+.close-button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: #9f9f9f;
+    color: rgb(0, 0, 0);
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    border-top: 3px solid #dfdfdf48;
+    border-left: 3px solid #dfdfdf48;
+    padding: 2px 8px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
 }
 
+.close-button:hover {
+    background-color: #666;
+    color: #ffffff;
+}
 #profilePic {
     width: 80%;
     border-radius: 50%;
@@ -43,6 +65,7 @@ font-family: monospace;
 
 .media-player {
     margin-top: 40px;
+    
 }
 
 .controls {
@@ -50,6 +73,10 @@ font-family: monospace;
     padding: 10px;
     display: flex;
     justify-content: space-around;
+    border-right: 3px solid;
+    border-bottom: 3px solid;
+    border-top: 4px solid #dfdfdf48;
+    border-left: 4px solid #dfdfdf48;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -82,20 +109,6 @@ font-family: monospace;
     position: relative;
     margin-top: 20px;
 }
-
-.description-header {
-    background: linear-gradient(to right, #447de5, #077ddd);
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-}
-
 .description-text {
     background-color: #9f9f9f;
     margin: 50px 0 0 0; /* Adjust margin to create space below the header */
