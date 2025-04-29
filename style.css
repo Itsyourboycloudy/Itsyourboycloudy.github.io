@@ -58,7 +58,10 @@ font-family: monospace;
 }
 #profilePic {
     width: 80%;
-    border-radius: 50%;
+    border-right: 3px solid;
+    border-bottom: 3px solid;
+    border-top: 5px solid #dfdfdf48;
+    border-left: 5px solid #dfdfdf48;
     margin-top: 50px; /* Adjust to create space for the header */
     margin-bottom: 20px;
 }
