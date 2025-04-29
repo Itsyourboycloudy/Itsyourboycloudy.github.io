@@ -57,11 +57,11 @@ font-family: monospace;
     color: #ffffff;
 }
 #profilePic {
-    width: 80%;
-    border-right: 3px solid;
-    border-bottom: 3px solid;
-    border-top: 5px solid #dfdfdf48;
-    border-left: 5px solid #dfdfdf48;
+    width: 70%;
+    border-right: 5px solid #dfdfdf48;
+    border-bottom: 5px solid #dfdfdf48;
+    border-top: 3px solid;
+    border-left: 3px solid;
     margin-top: 50px; /* Adjust to create space for the header */
     margin-bottom: 20px;
 }
@@ -113,11 +113,14 @@ font-family: monospace;
     margin-top: 20px;
 }
 .description-text {
-    background-color: #9f9f9f;
+    background-color: #ededed;
+    border-right: 5px solid #c2c2c25a;
+    border-bottom: 5px solid #c2c2c25a;
+    border-top: 3px solid;
+    border-left: 3px solid;
     margin: 50px 0 0 0; /* Adjust margin to create space below the header */
     padding: 20px;
     text-align: left;
-    border-radius: 0 0 10px 10px; /* Rounded corners for the bottom */
 }
 #nowPlaying {
     margin-top: 10px;
@@ -144,4 +147,29 @@ h1, h2 {
 
 hr {
     margin: 20px 0;
+}
+.desktop-icons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between icons */
+    justify-content: center; /* Center icons horizontally */
+    align-items: center; /* Center icons vertically */
+    padding: 20px;
+    width: 100%;
+}
+
+.icon {
+    text-align: center;
+    cursor: pointer;
+}
+
+.icon img {
+    width: 96px;
+    height: 96px;
+}
+
+.icon p {
+    color: white;
+    margin: 10px 0 0;
+    font-size: 18px;
 }
