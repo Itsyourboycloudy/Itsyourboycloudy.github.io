@@ -13,32 +13,22 @@
 
 <body>
     <div class="container">
-        <!-- Left side: Picture and Media Player -->
+        <!-- Left side: Picture-->
         <div class="row">
             <div class="col-md-6">
                 <div id="profileBox" class="icon-box" style="display: none;">
                     <div class="header">
-                        Picture & Music
+                        Jesse.png
                         <span class="close-button" onclick="closeSection('profileBox')">X</span>
                     </div>
                     <img src="Me.JPG" alt="Your Photo" class="img-fluid" id="profilePic">
-                    <div class="media-player mt-3">
-                        <audio id="audioPlayer"></audio>
-                        <div class="controls">
-                            <button id="backButton">⏮</button>
-                            <button id="playPauseButton">▶</button>
-                            <button id="skipButton">⏭</button>
-                        </div>
-                        <p id="nowPlaying">Now Playing: ...</p>
-                    </div>
                 </div>
-
             </div>
             <!-- Right side: Description -->
             <div class="col-md-6">
                 <div id="descriptionBox" class="icon-box" style="display: none;">
                     <div class="header">
-                        About Me
+                        About Me.txt
                         <span class="close-button" onclick="closeSection('descriptionBox')">X</span>
                     </div>
                     <div class="description-text">
@@ -79,14 +69,14 @@
             <img src="Icons/resume1.png" alt="Resume Icon">
             <p>Resume</p>
         </div>
-    </div>  
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <!-- Pop-up Sections -->
                 <div id="projectsBox" class="icon-box" style="display: none;">
                     <div class="header">
-                        Projects
+                        Projects.fld
                         <span class="close-button" onclick="closeSection('projectsBox')">X</span>
                     </div>
                     <div class="icon-text">
@@ -105,7 +95,7 @@
             <div class="col-md-6">
                 <div id="contactBox" class="icon-box" style="display: none;">
                     <div class="header">
-                        Contact
+                        Contact.eml
                         <span class="close-button" onclick="closeSection('contactBox')">X</span>
                     </div>
                     <div class="icon-text">
@@ -118,7 +108,7 @@
             <div class="col-md-6">
                 <div id="resumeBox" class="icon-box" style="display: none;">
                     <div class="header">
-                        Resume
+                        Resume.pdf
                         <span class="close-button" onclick="closeSection('resumeBox')">X</span>
                     </div>
                     <div class="icon-text">
@@ -158,57 +148,6 @@
         function closeSection(id) {
             document.getElementById(id).style.display = 'none';
         }
-
-        // Audio Player
-        const songs = [
-            "Kendrick Lamar - Rich Spirit.mp3",
-            "Frank Ocean - Nights.mp3",
-            "Baby Keem - 16.mp3",
-        ];
-
-        let currentSongIndex = 0;
-        const audioPlayer = document.getElementById("audioPlayer");
-        const playPauseButton = document.getElementById("playPauseButton");
-        const backButton = document.getElementById("backButton");
-        const skipButton = document.getElementById("skipButton");
-        const nowPlaying = document.getElementById("nowPlaying");
-
-        function loadSong(index) {
-            audioPlayer.src = "songs/" + songs[index];
-            nowPlaying.textContent = `Now Playing: ${songs[index].split('/').pop()}`;
-        }
-
-        playPauseButton.addEventListener("click", () => {
-            if (audioPlayer.paused) {
-                audioPlayer.play();
-                playPauseButton.textContent = "⏸";
-            } else {
-                audioPlayer.pause();
-                playPauseButton.textContent = "▶";
-            }
-        });
-
-        skipButton.addEventListener("click", () => {
-            currentSongIndex = (currentSongIndex + 1) % songs.length;
-            loadSong(currentSongIndex);
-            audioPlayer.play();
-            playPauseButton.textContent = "⏸";
-        });
-
-        backButton.addEventListener("click", () => {
-            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-            loadSong(currentSongIndex);
-            audioPlayer.play();
-            playPauseButton.textContent = "⏸";
-        });
-
-        audioPlayer.addEventListener("ended", () => {
-            currentSongIndex = (currentSongIndex + 1) % songs.length;
-            loadSong(currentSongIndex);
-            audioPlayer.play();
-        });
-
-        loadSong(currentSongIndex);
     </script>
 </body>
 
