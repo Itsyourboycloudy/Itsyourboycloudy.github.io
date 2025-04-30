@@ -135,6 +135,10 @@ hr {
     margin: 10px;
     font-size: 18px;
 }
+.icon:hover {
+    background-color: #79b1ff48;
+}
+
 .windows-dock {
     position: fixed;
     bottom: 0;
@@ -169,6 +173,5 @@ hr {
 }
 
 .dock-icon:hover {
-    transform: scale(1.2);
     background-color: #cfcfcf;
 }
