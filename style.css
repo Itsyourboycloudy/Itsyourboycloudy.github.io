@@ -65,7 +65,6 @@ body {
     border-top: 3px solid;
     border-left: 3px solid;
     margin-top: 50px;
-    /* Adjust to create space for the header */
     margin-bottom: 20px;
 }
 .description-text,
@@ -76,7 +75,6 @@ body {
     border-top: 3px solid;
     border-left: 3px solid;
     margin: 50px 0 0 0;
-    /* Adjust margin to create space below the header */
     padding: 20px;
     text-align: left;
 }
@@ -123,6 +121,7 @@ hr {
 .icon {
     text-align: center;
     cursor: pointer;
+    padding-top: 30px;
 }
 
 .icon img {
