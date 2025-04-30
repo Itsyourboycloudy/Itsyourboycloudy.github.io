@@ -181,3 +181,40 @@ hr {
     margin: 10px;
     font-size: 18px;
 }
+.windows-dock {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #989FA2;
+    border-top: 3px solid #d2d2d2;
+    box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    z-index: 9999;
+}
+
+.dock-icon {
+    margin: 0 3px;
+    padding: 5px;
+    background-color: #989FA2;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    border-top: 3px solid #c2c2c25a;
+    border-left: 3px solid #c2c2c25a;
+    box-shadow: inset -1px -1px 2px #fff, inset 1px 1px 2px #888;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.dock-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.dock-icon:hover {
+    transform: scale(1.2);
+    background-color: #cfcfcf;
+}
