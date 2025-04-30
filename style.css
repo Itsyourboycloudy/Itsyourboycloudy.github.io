@@ -1,6 +1,6 @@
 body {
     font-family: monospace;
-    background: linear-gradient(to right, #0b40a4, #5badf0);
+    background-image: url('Home/Background.png');
 }
 
 .container {
@@ -132,11 +132,15 @@ hr {
 
 .icon p {
     color: white;
-    margin: 10px;
+    background-color: rgba(2, 18, 41, 0.518); /* Slightly brighter background on hover */
+    margin: 10px auto;
     font-size: 18px;
+    padding: 0px 20px;
+    width: fit-content;
 }
 .icon:hover {
-    background-color: #79b1ff48;
+    background-color: #4693ff60;
+    padding: 20px 20px;
 }
 
 .windows-dock {
