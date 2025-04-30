@@ -44,27 +44,29 @@
                     <div class="description-text">
                         <h1>Hello! My name is <strong>Jesse Torres</strong></h1>
                         <p>
-                            I am a GIMM student at Boise State University, passionate about game development,
-                            interactive media, and coding. This website serves as a showcase of my projects, skills, and
-                            experience.
+                            I'm a student in the Games, Interactive Media, and Mobile (GIMM) program at Boise State
+                            University, with a strong passion for game development, interactive storytelling, and
+                            creative coding. My goal is to design and build experiences that are not only engaging but
+                            also meaningful and accessible.
+                        </p>
+                        <p>
+                            I’m always eager to collaborate on innovative ideas and push the boundaries of interactive
+                            media. Thanks for visiting my site — I hope you enjoy exploring my work!
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Desktop Icons -->
-    <div class="icon" onclick="openSection('profileBox')">
-        <img src="Icons/profile.png" alt="Media Icon">
-        <p>Jesse.png</p>
-    </div>
-    <div class="icon" onclick="openSection('descriptionBox')">
-        <img src="Icons/description.png" alt="Description Icon">
-        <p>About Me</p>
-    </div>
-
     <div class="desktop-icons">
+        <div class="icon" onclick="openSection('profileBox')">
+            <img src="Icons/profile.png" alt="Media Icon">
+            <p>Jesse.png</p>
+        </div>
+        <div class="icon" onclick="openSection('descriptionBox')">
+            <img src="Icons/description.png" alt="Description Icon">
+            <p>About Me</p>
+        </div>
         <div class="icon" onclick="openSection('projectsBox')">
             <img src="Icons/folder.png" alt="Projects Icon">
             <p>Projects</p>
@@ -74,54 +76,69 @@
             <p>Contact</p>
         </div>
         <div class="icon" onclick="openSection('resumeBox')">
-            <img src="Icons/resume.png" alt="Resume Icon">
+            <img src="Icons/resume1.png" alt="Resume Icon">
             <p>Resume</p>
         </div>
     </div>
 
-    <!-- Pop-up Sections -->
-    <div id="projectsBox" class="icon-box" style="display: none;">
-        <div class="header">
-            Projects
-            <span class="close-button" onclick="closeSection('projectsBox')">X</span>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Pop-up Sections -->
+                <div id="projectsBox" class="icon-box" style="display: none;">
+                    <div class="header">
+                        Projects
+                        <span class="close-button" onclick="closeSection('projectsBox')">X</span>
+                    </div>
+                    <div class="icon-text">
+                        <p>Here are some of my recent projects:</p>
+                        <img src="Projects/Letterboxd 6.png" class="project-image img-fluid mb-2"
+                            alt="Letterboxd Project">
+                        <p><strong>Game Title:</strong> Letterboxd Clone (Unity/C#)</p>
+                        <img src="Projects/Letterboxd 6.png" class="project-image img-fluid mb-2"
+                            alt="Letterboxd Project">
+                        <p><strong>Game Title:</strong> Letterboxd Clone (Unity/C#)</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="icon-text">
-            <p>Here are some of my recent projects:</p>
-            <img src="project-sample.jpg" class="img-fluid mb-2" alt="Project Sample">
-            <p><strong>Game Title:</strong> Space Invaders Clone (Unity/C#)</p>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="contactBox" class="icon-box" style="display: none;">
+                    <div class="header">
+                        Contact
+                        <span class="close-button" onclick="closeSection('contactBox')">X</span>
+                    </div>
+                    <div class="icon-text">
+                        <p>Email: <a href="mailto:jessejtorres1987@gmail.com">jessejtorres1987@gmail.com</a></p>
+                        <p>LinkedIn: <a href="https://www.linkedin.com/in/jessejamestorres"
+                                target="_blank">linkedin.com/in/jessejamestorres</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="resumeBox" class="icon-box" style="display: none;">
+                    <div class="header">
+                        Resume
+                        <span class="close-button" onclick="closeSection('resumeBox')">X</span>
+                    </div>
+                    <div class="icon-text">
+                        <p><a href="Jesse_Torres_Resume.pdf" target="_blank">Resume PDF</a></p>
+                        <img src="My Resume.jpg" class="img-fluid" alt="Resume Preview">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div id="contactBox" class="icon-box" style="display: none;">
-        <div class="header">
-            Contact
-            <span class="close-button" onclick="closeSection('contactBox')">X</span>
-        </div>
-        <div class="icon-text">
-            <p>Email: <a href="mailto:jessejtorres1987@gmail.com">jessejtorres1987@gmail.com</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/jessejamestorres"
-                    target="_blank">linkedin.com/in/jessejamestorres</a>
-            </p>
-        </div>
-    </div>
-
-    <div id="resumeBox" class="icon-box" style="display: none;">
-        <div class="header">
-            Resume
-            <span class="close-button" onclick="closeSection('resumeBox')">X</span>
-        </div>
-        <div class="icon-text">
-            <p><a href="Jesse_Torres_Resume.pdf" target="_blank">Resume PDF</a></p>
-            <img src="My Resume.jpg" class="img-fluid" alt="Resume Preview">
-        </div>
-    </div>
-
     <!-- JavaScript -->
     <script>
         // Section pop-ups
         function openSection(id) {
-            document.getElementById(id).style.display = 'block';
+            const section = document.getElementById(id);
+            section.style.display = 'block';
+            section.scrollIntoView({ behavior: 'smooth' });
         }
+
         function closeSection(id) {
             document.getElementById(id).style.display = 'none';
         }
