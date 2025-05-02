@@ -117,6 +117,8 @@ hr {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 20px;
     padding: 20px;
+    z-index: 10;
+    position: relative;
 }
 
 .icon {
@@ -194,6 +196,7 @@ hr {
     transform: translate(-50%, -50%);
     text-align: center;
     width: auto;
+    z-index: 1;
 }
 
 #welcomeGif {
