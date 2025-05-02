@@ -4,7 +4,7 @@ body {
 }
 
 .container {
-    padding: 20px;
+    padding-bottom: 50px;
 }
 
 .profile-box,
@@ -79,11 +79,13 @@ body {
     text-align: left;
 }
 .project-image {
-    width: 300px;
-    height: auto;
-    margin-bottom: 10px; /* Add spacing below the image */
+    max-width: 100%; /* Ensures the image fits within its container */
+    height: auto; /* Maintains the aspect ratio */
+    margin-bottom: 10px; /* Adds spacing below the image */
     margin-left: auto;
     margin-right: auto;
+    display: block; /* Centers the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a subtle shadow */
 }
 #projectsBox {
     max-height: 80vh;
@@ -116,7 +118,6 @@ hr {
     gap: 20px;
     padding: 20px;
 }
-
 
 .icon {
     text-align: center;
@@ -177,4 +178,9 @@ hr {
 
 .dock-icon:hover {
     background-color: #cfcfcf;
+}
+#project3Image:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <title>The Wonder Weapons</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="assets/js/React/Component/Header.js" type="text/babel"></script>
+</head>
+<body id="wonder-page">
+    <!-- React Header on every page per Jackie's request -->
+    <div id="react-header"></div>
+    <div class="container text-center">
+        <h3>Wonder Weapon Popularity Contest</h3>
+        <p>Which Wonder Weapon is the most popular??? Find out by how B I G the text is!</p>
+    </div>
+    <div id="my_dataviz"></div>
+    <div class="container text-center">
+        <p>The data reveals fascinating patterns about Wonder Weapons in Call of Duty Zombies, including their distribution across maps, thematic connections to map locations, and the variety in their design and mechanics. Each Wonder Weapon reflects the creative intent behind the maps, providing players with powerful tools that often align with the map's story or challenges. By showcasing this data, I can highlight how these iconic elements contribute to the gameplay experience, serving as a cornerstone of strategy and excitement. This dataset allows for an engaging exploration of their evolution and the innovative ways they enrich player engagement.</p>
+    </div>
+<script>
+
+// List of words
+var myWords = [
+  {word: "Ray Gun", size: "10"},
+  {word: "Wunderwaffe DG-2", size: "5"},
+  {word: "Thunder Gun", size: "4"},
+  {word: "Winter's Howl", size: "3"},
+  {word: "Scavenger", size: "1"},
+  {word: "V-R11", size: "1"},
+  {word: "31-79 JGb215", size: "1"},
+  {word: "Zap Gun Dual Wield", size: "1"},
+  {word: "Jet Gun", size: "2"},
+  {word: "Ray Gun Mark II", size: "6"},
+  {word: "Sliquifier", size: "1"},
+  {word: "Blundergat", size: "3"},
+  {word: "Paralyzer", size: "1"},
+  {word: "Elemental Staffs", size: "4"},
+  {word: "Apothicon Servant", size: "2"},
+  {word: "KT-4", size: "1"},
+  {word: "Ray Gun Mark III", size: "1"},
+  {word: "Kraken", size: "1"},
+  {word: "Death of Orion", size: "1"},
+  {word: "Alistair's Folly", size: "1"},
+  {word: "Savage Impaler", size: "1"},
+  {word: "Elemental Hands", size: "4"},
+  {word: "D.I.E. Shockwave", size: "1"},
+  {word: "RAI K-84", size: "1"},
+  {word: "CRBR-S", size: "1"},
+  {word: "Chrysalax", size: "1"},
+  {word: "DRI-11 Beamsmasher", size: "1"},
+  {word: "Elemental Swords", size: "4"}
+];
+myWords.forEach(function(item) {
+  item.size *= 10;
+});
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 10, bottom: 10, left: 10},
+    width = 950 - margin.left - margin.right,
+    height = 950 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Wordcloud features that are different from one word to the other must be here
+var layout = d3.layout.cloud()
+  .size([width, height])
+  .words(myWords.map(function(d) { return {text: d.word, size:d.size}; }))
+  .padding(5)        //space between words
+  .rotate(function() { return ~~(Math.random() * 2) * 90; })
+  .fontSize(function(d) { return d.size; })      // font size of words
+  .on("end", draw);
+layout.start();
+
+function draw(words) {
+  svg
+    .append("g")
+      .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+      .selectAll("text")
+        .data(words)
+      .enter().append("text")
+        .style("font-size", function(d) { return d.size; })
+        .style("fill", "#69b3a2")
+        .attr("text-anchor", "middle")
+        .style("font-family", "Impact")
+        .attr("transform", function(d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+}
+</script>

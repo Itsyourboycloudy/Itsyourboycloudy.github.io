@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <title>High Rounds</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3-scale-radial.js"></script>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="assets/js/React/Component/Header.js" type="text/babel"></script>
+
+</head>
+<body>
+      <!-- React Header on every page per Jackie's request -->
+  <div id="react-header"></div>
+  <div id="graph-description">
+    This graph represents the highest rounds achieved in various Treyarch zombie maps.
+  </div>
+  <div id="my_datacircle"></div>
+  <div class="container text-center">
+    <p>The data reveals significant variations in the highest rounds achieved by pros across different Zombies maps, reflecting differences in map difficulty, strategies, and available resources. Classic maps like Shi No Numa (11,843) and Nacht Der Untoten (8,817) stand out with exceptionally high records, while others like Nuketown (96) and Call of the Dead (105) have much lower maximum rounds, suggesting greater challenges or limitations. Interestingly, several mid-range maps, such as Buried and Revelations, have identical records of 255, likely due to a technical or gameplay cap. Additionally, more recent maps, like Blood of the Dead (451) and Dead of the Night (430), often show higher rounds, indicating that newer designs may include mechanics that support longer survival. These trends highlight the evolving design and balance of Zombies maps over time.</p>
+</div>
+  <script>
+var margin = {top: 150, right: 100, bottom: 100, left: 100},
+    width = 960 - margin.left - margin.right,
+    height = 960 - margin.top - margin.bottom,
+    innerRadius = 90,
+    outerRadius = Math.min(width, height) / 2;
+
+
+    var svg = d3.select("#my_datacircle")
+      .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform", "translate(" + (width / 2 + margin.left) + "," + (height / 2 + margin.top) + ")");
+
+    // New zombie maps and high rounds data
+    var data = [
+  {Map: "Nacht Der Untoten", Value: 8817},
+  {Map: "Verruckt", Value: 3365},
+  {Map: "Shi No Numa", Value: 11843},
+  {Map: "Der Riese", Value: 194},
+  {Map: "Kino Der Toten", Value: 240},
+  {Map: "Five", Value: 241},
+  {Map: "Ascension", Value: 244},
+  {Map: "Call Of The Dead", Value: 105},
+  {Map: "Shangri-La", Value: 195},
+  {Map: "Moon", Value: 233},
+  {Map: "Tranzit", Value: 178},
+  {Map: "Nuketown", Value: 96},
+  {Map: "Die Rise", Value: 219},
+  {Map: "Mob of the Dead", Value: 237},
+  {Map: "Buried", Value: 255},
+  {Map: "Origins", Value: 164},
+  {Map: "Nacht Der Untoten", Value: 8817},
+  {Map: "Shadows of Evil", Value: 255},
+  {Map: "The Giant", Value: 255},
+  {Map: "Der Eisendrache", Value: 255},
+  {Map: "Zetsubou No Shima", Value: 255},
+  {Map: "Gorod Krovi", Value: 255},
+  {Map: "Revelations", Value: 255},
+  {Map: "IX", Value: 255},
+  {Map: "Voyage Of Despair", Value: 246},
+  {Map: "Blood Of The Dead", Value: 451},
+  {Map: "Classified", Value: 274},
+  {Map: "Dead Of The Night", Value: 430},
+  {Map: "Ancient Evil", Value: 400},
+  {Map: "Alpha Omega", Value: 257},
+  {Map: "Tag Der Toten", Value: 449}
+];
+
+    // Scales
+    var x = d3.scaleBand()
+        .range([0, 2 * Math.PI])
+        .align(0)
+        .domain(data.map(function(d) { return d.Map; }));
+        var y = d3.scaleRadial()
+    .range([innerRadius, outerRadius])
+    .domain([0, d3.max(data, function(d) { return d.Value; })]);
+
+
+    // Add the bars
+    svg.append("g")
+      .selectAll("path")
+      .data(data)
+      .enter()
+      .append("path")
+        .attr("fill", "#69b3a2")
+        .attr("d", d3.arc()
+            .innerRadius(innerRadius)
+            .outerRadius(function(d) { return y(d['Value']); })
+            .startAngle(function(d) { return x(d.Map); })
+            .endAngle(function(d) { return x(d.Map) + x.bandwidth(); })
+            .padAngle(0.01)
+            .padRadius(innerRadius));
+
+    // Add the labels
+    svg.append("g")
+        .selectAll("g")
+        .data(data)
+        .enter()
+        .append("g")
+          .attr("text-anchor", function(d) { return (x(d.Map) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "end" : "start"; })
+          .attr("transform", function(d) { return "rotate(" + ((x(d.Map) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")" + "translate(" + (y(d['Value']) + 10) + ",0)"; })
+        .append("text")
+          .text(function(d){ return d.Map; })
+          .attr("transform", function(d) { return (x(d.Map) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "rotate(180)" : "rotate(0)"; })
+          .style("font-size", "11px")
+          .attr("alignment-baseline", "middle");
+  </script>
+</body>

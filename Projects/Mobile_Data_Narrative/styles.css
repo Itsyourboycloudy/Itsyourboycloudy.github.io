@@ -1,0 +1,153 @@
+/* Global Styles - Apply to All Pages */
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+p {
+    font-family: cursive;
+}
+/* Styles for Hub.html */
+/* "zombified per Jackie's request*/
+#hub-page {
+    background-image: url('Background Zombie.jpg');
+    background-size: cover; /* Ensures the image covers the entire viewport */
+    background-position: center center; /* Centers the image */
+}
+h1 {
+    display: inline-block; /* Shrinks the background to fit the text */
+    background-image: url("Background 1.png");
+    background-color: #ffffff;
+    background-size: cover; /* Ensures the image covers the entire viewport */
+    padding: 5px;
+}
+
+.p1 {
+    background-color: #efa2a2;
+    padding: 10px;
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Animation for Zombie on hover */
+/* "zombified per Jackie's request*/
+.zombie {
+    animation-name: zombiemoving;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes zombiemoving {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(3deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+.gun {
+    animation-name: gunmoving;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes gunmoving {
+    0% {
+        transform: rotate(0deg) translateY(0);
+    }
+    50% {
+        transform: rotate(2deg) translateY(-10px);
+    }
+    100% {
+        transform: rotate(0deg) translateY(0);
+    }
+}
+
+/* Styles for React.html */
+/* "zombified per Jackie's request*/
+#react-page {
+    background-image: url('Background 2.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center center;
+}
+
+#container {
+    overflow: hidden; /* stops scrollbar at bottom for cover */
+}
+
+#triggerImage {
+    max-width: 100%;
+    max-height: 100%;
+    cursor: pointer;
+}
+
+#react-data-table {
+    display: none;
+    position: absolute;
+    left: 150px;
+    right: 150px;
+    padding: 15px;  
+    background-image: url("Dirty Paper.jpg");
+} 
+
+/* Styles for Map Graph.html */
+h2 {
+    display: inline-block; /* Shrinks the background to fit the text */
+    background-image: url("Background 1.png");
+    background-position: center center;
+    padding: 5px;
+}
+h3
+{
+    display: inline-block; /* Shrinks the background to fit the text */
+    background-image: url("Background 1.png");
+    background-position: center center;
+    padding: 5px;
+}
+#my_dataviz {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff7f7;
+}
+#infoPanel {
+    position: absolute;
+    top: 500px; 
+    left: 10px; 
+    padding: 10px; 
+    width: 250px;
+    background-image: url("Background 1.png");
+    background-position: center center;
+
+}
+#my_datacircle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set the height to take full viewport */
+    text-align: center;
+    background-image: url("Background 1.png");
+    background-position: center center;
+
+  }
+  
+  #graph-description {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+svg {
+    display: block;
+}

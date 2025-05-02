@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <title>Map Visualization</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="assets/js/React/Component/Header.js" type="text/babel"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+</head>
+
+<body>
+    <!-- React Header on every page per Jackie's request -->
+    <div id="react-header"></div>
+    <div class="container mt-4">
+        <h2 class="text-center">Call of Duty Zombies Map Visualization</h2>
+        <p class="text-center">
+            Explore the iconic locations from Call of Duty Zombies maps. Hover over countries to view detailed information about map names, locations, and the crews involved. The data highlights the rich narrative depth of Call of Duty Zombies maps, revealing patterns in geographical settings, historical inspiration, and character integration. The maps are designed not just as gameplay arenas but as storytelling tools, immersing players in unique and culturally significant locations. This dataset is ideal for a Mobile Narrative because it combines global diversity with a cohesive storyline, providing opportunities to explore how settings and characters evolve over time. By analyzing this data, I can demonstrate how design elements work together to create a dynamic and engaging player experience while highlighting the interplay between history, fantasy, and gameplay.
+        </p>
+    </div>
+    <svg id="my_dataviz"></svg>
+
+    <!-- My Info Panel -->
+    <div id="infoPanel">
+        <h3>Zombies Map Info</h3>
+        <p id="mapName">Map Name: N/A</p>
+        <p id="location">Location: N/A</p>
+        <p id="crew">Crew: N/A</p>
+    </div>
+
+    <script>
+        var svg = d3.select("svg")
+            .attr("width", window.innerWidth)
+            .attr("height", window.innerHeight);
+
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+// If want to change size change scale
+        var projection = d3.geoMercator()
+            .scale(85)
+            .center([0, 20])
+            .translate([width / 2, height / 2]);
+
+        var path = d3.geoPath().projection(projection);
+
+        // Data for Call of Duty Zombies maps
+        const zombieMapData = [
+            { code: "POL", mapName: "Nacht der Untoten", location: "Morasko, Poland", crew: "Unamed Marines" },
+            { code: "DEU", mapName: "Verrückt", location: "Germany, Wittenau Sanatorium", crew: "Ultimis" },
+            { code: "JPN", mapName: "Shi No Numa", location: "Swamp in Japan", crew: "Ultimis" },
+            { code: "DEU", mapName: "Der Riese", location: "Waffenfabrik Der Riese", crew: "Primis" },
+            { code: "DEU", mapName: "Kino Der Toten", location: "Deutsches sol Kino", crew: "Ultimis" },
+            { code: "USA", mapName: "Five", location: "United States, The Pentagon", crew: "U.S Governement & Cuban Government" },
+            { code: "KAZ", mapName: "Ascension", location: "Baikonur Cosmodrome, Kazakhstan", crew: "Ultimis" },
+            { code: "RUS", mapName: "Call of the Dead", location: "Podkamennaya Tunguska River, Russia", crew: "Celebrities" },
+            { code: "CHN", mapName: "Shangri-La", location: "Tibet's Kunlun Mountains, China", crew: "Ultimis" },
+            { code: "USA", mapName: "Nuketown", location: "National Security Sites", crew: "CDC & CIA" },
+            { code: "USA", mapName: "Tranzit", location: "Hanford", crew: "Victis" },
+            { code: "CHN", mapName: "Die Rise", location: "Province 22, Shanghai, China", crew: "Victis" },
+            { code: "AGO", mapName: "Buried", location: "Namibe, Angola", crew: "Victis" },
+            { code: "USA", mapName: "Mob of the Dead", location: "Alcatraz", crew: "Prisoners" },
+            { code: "FRA", mapName: "Origins", location: "Excavation Site 64, Northern France", crew: "Primis" },
+            { code: "USA", mapName: "Shadows of Evil", location: "Morg City", crew: "SOE Crew" },
+            { code: "DEU", mapName: "The Giant", location: "Waffenfabrik Der Riese", crew: "Primis" },
+            { code: "AUT", mapName: "Der Eisendrache", location: "Griffin Castle, Salzburg, Austria", crew: "Primis" },
+            { code: "SLB", mapName: "Zetsuboh No Shima", location: "Division 9 Facility, Ponape (Pohnpei island)", crew: "Primis" },
+            { code: "RUS", mapName: "Gorod krovi", location: "Stalingrad, Stalingrad Oblast, Soviet Union", crew: "Primis" },
+            { code: "USA", mapName: "Classified", location: "The Pentagon", crew: "Ultimis" },
+            { code: "USA", mapName: "Blood of the Dead", location: "Alcatraz", crew: "Ultimis" },
+            { code: "USA", mapName: "Alpha Omega", location: "Camp Edward", crew: "Primis and Ultimis" },
+            { code: "RUS", mapName: "Tag Der Toten", location: "Podkamennaya Tunguska River, Russia", crew: "Victis" },
+            { code: "GBR", mapName: "Dead of the Night", location: "Rhodes Manor, Hampshire, England", crew: "Dead of the Night Cast" },
+            { code: "PRT", mapName: "Voyage of Despair", location: "RMS Titanic, North Atlantic Ocean", crew: "Chaos" },
+            { code: "EGY", mapName: "IX", location: "Gladiatorial Arena, Egyptian Province, Roman Empire", crew: "Chaos" },
+            { code: "GRC", mapName: "Ancient Evil", location: "Mount Olympus, Delphi, Greece", crew: "Chaos" },
+            { code: "USA", mapName: "Liberty Falls", location: "Liberty Falls", crew: "Requiem" },
+            { code: "PHL", mapName: "Terminus", location: "Blacksite 13, Terminus Island, Philippine Sea", crew: "Requiem" },
+            // Add additional map data here...
+        ];
+
+        // Map the zombie data for quick lookup by country code
+        const zombieData = new Map(zombieMapData.map(d => [d.code, d]));
+
+        // Load GeoJSON data and create the map
+        d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson", function (error, topo) {
+            if (error) throw error;
+
+            let mouseOver = function (event, d) {
+                d3.selectAll(".Country")
+                    .transition()
+                    .duration(200)
+                    .style("opacity", 0.5);
+                d3.select(this)
+                    .transition()
+                    .duration(200)
+                    .style("opacity", 1)
+                    .style("stroke", "black");
+                d3.select(this)
+                    .on("mouseleave", function () {
+                        d3.select(this)
+                            .transition()
+                            .duration(200)
+                            .style("opacity", 0.5)
+                            .style("stroke", null);
+                    });
+                console.log(event, event.id);
+                // Retrieve map data for hovered country
+                let mapInfoList = [];
+                for (let row = 0; row < zombieMapData.length; row++) {
+                    if (zombieMapData[row].code === event.id) {
+                        mapInfoList.push(zombieMapData[row]); // Add the matching row to the list
+                    }
+                }
+
+
+                // Update the info panel with map data if available
+                if (mapInfoList.length > 0) {
+                    const mapNames = mapInfoList.map(info => info.mapName).join(", ");
+                    const locations = mapInfoList.map(info => info.location).join(", ");
+                    const crews = mapInfoList.map(info => info.crew).join(", ");
+
+                    d3.select("#mapName").text("Map Name(s): " + mapNames);
+                    d3.select("#location").text("Location(s): " + locations);
+                    d3.select("#crew").text("Crew(s): " + crews);
+                } else {
+                    // Clear info if no data is available
+                    d3.select("#mapName").text("Map Name: N/A");
+                    d3.select("#location").text("Location: N/A");
+                    d3.select("#crew").text("Crew: N/A");
+                }
+            }
+
+            let mouseLeave = function (d) {
+                d3.selectAll(".Country")
+                    .transition()
+                    .duration(200)
+                    .style("opacity", 0.8);
+                d3.select(this)
+                    .transition()
+                    .duration(200)
+                    .style("stroke", "transparent");
+
+                // Reset info panel on mouse leave
+                d3.select("#mapName").text("Map Name: N/A");
+                d3.select("#location").text("Location: N/A");
+                d3.select("#crew").text("Crew: N/A");
+            }
+
+            // Draw the map with country paths
+            svg.append("g")
+                .selectAll("path")
+                .data(topo.features)
+                .enter()
+                .append("path")
+                .attr("d", path)
+                .attr("fill", function (d) {
+                    return zombieData.has(d.id) ? "steelblue" : "lightgray";
+                })
+                .style("stroke", "transparent")
+                .attr("class", "Country")
+                .style("opacity", 0.8)
+                .on("mouseover", mouseOver)
+                .on("mouseleave", mouseLeave);
+        });
+    </script>
+</body>
+
+</html>
