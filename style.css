@@ -187,3 +187,16 @@ hr {
 .project-video {
     border-radius: 5px; /* Optional: Adds rounded corners */
 }
+#welcomeGifContainer {
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: auto;
+}
+
+#welcomeGif {
+    width: 500px; /* Increase this as needed */
+    max-width: none; /* Prevents scaling down */
+}
