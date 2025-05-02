@@ -1,5 +1,6 @@
 body {
     font-family: monospace;
+    
     background-image: url('Home/Background.png');
 }
 
@@ -79,13 +80,13 @@ body {
     text-align: left;
 }
 .project-image {
-    max-width: 100%; /* Ensures the image fits within its container */
-    height: auto; /* Maintains the aspect ratio */
-    margin-bottom: 10px; /* Adds spacing below the image */
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
-    display: block; /* Centers the image */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a subtle shadow */
+    display: block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 #projectsBox {
     max-height: 80vh;
@@ -117,8 +118,6 @@ hr {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 20px;
     padding: 20px;
-    z-index: 10;
-    position: relative;
 }
 
 .icon {
@@ -134,7 +133,7 @@ hr {
 
 .icon p {
     color: white;
-    background-color: rgba(2, 18, 41, 0.518); /* Slightly brighter background on hover */
+    background-color: rgba(2, 18, 41, 0.518);
     margin: 10px auto;
     font-size: 18px;
     padding: 0px 20px;
@@ -187,19 +186,35 @@ hr {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 .project-video {
-    border-radius: 5px; /* Optional: Adds rounded corners */
+    border-radius: 5px;
 }
 #welcomeGifContainer {
-    position: fixed;
-    top: 70%;
+    position: relative;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
     text-align: center;
     width: auto;
-    z-index: 1;
 }
 
 #welcomeGif {
-    width: 500px; /* Increase this as needed */
-    max-width: none; /* Prevents scaling down */
+    width: 500px;
+    max-width: 80%;
+    height: auto;
 }
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Scrollbar Changes */
+::-webkit-scrollbar-track {
+    background: #989FA2;
+    border: 2px solid #d2d2d2;
+}
+::-webkit-scrollbar-thumb {
+    background: #404040;
+    border: 3px solid #d2d2d2;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #272727;
+}
+/* END of Scrollbar Changes */
