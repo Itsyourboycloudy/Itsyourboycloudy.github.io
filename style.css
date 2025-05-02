@@ -174,7 +174,6 @@ hr {
 .dock-icon img {
     width: 40px;
     height: 40px;
-    background-color: #cfcfcf;
 }
 
 .dock-icon:hover {
@@ -184,4 +183,7 @@ hr {
     transform: scale(1.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+.project-video {
+    border-radius: 5px; /* Optional: Adds rounded corners */
 }
