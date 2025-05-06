@@ -1,9 +1,5 @@
-html{
-    background-image: url('Home/Background.png');
-}
 body {
     font-family: monospace;
-    
     background-image: url('Home/Background.png');
 }
 
@@ -81,6 +77,31 @@ body {
     margin: 50px 0 0 0;
     padding: 20px;
     text-align: left;
+}
+#contactBox .icon-text :hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#contactBox .icon-text {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns for the icons */
+    grid-template-rows: auto; /* Automatically adjust rows */
+    justify-items: center; /* Center items horizontally */
+    text-align: center; /* Center text */
+    padding: 20px;
+    gap: 20px; /* Add spacing between items */
+}
+
+#contactBox .icon-text i {
+    font-size: 4rem; /* Adjust icon size */
+    color: #333; /* Icon color */
+    margin-bottom: 10px; /* Add spacing between the icon and text */
+}
+
+#contactBox .icon-text p {
+    margin: 0;
+    font-size: 16px; /* Adjust text size */
+    color: #555; /* Text color */
 }
 .project-image {
     max-width: 100%;
@@ -183,7 +204,13 @@ hr {
 .dock-icon:hover {
     background-color: #cfcfcf;
 }
+
 #project3Image:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+#My_Resume:hover {
     transform: scale(1.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
