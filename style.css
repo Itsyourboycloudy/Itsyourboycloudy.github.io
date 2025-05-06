@@ -6,7 +6,11 @@ body {
 .container {
     padding-bottom: 50px;
 }
-
+p {
+    word-wrap: break-word; /* Break long words to prevent overflow */
+    overflow-wrap: break-word; /* Ensure text wraps within the container */
+    white-space: normal; /* Prevent text from staying on a single line */
+}
 .profile-box,
 .description-box,
 .icon-box {
